@@ -40,6 +40,12 @@ public class Novaly {
     return "Hello World!";
   }
 
+  @RequestMapping(value = "/lan/db", method = RequestMethod.GET)
+  @ResponseBody
+  String db() {
+    return dbUrl;
+  }
+
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = dataSource.getConnection()) {
