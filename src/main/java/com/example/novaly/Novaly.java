@@ -28,10 +28,21 @@ public class Novaly {
   private String dbUrl;
 
   @Autowired
-  private DataSource dataSource;
+  private static DataSource dataSource;
 
   public static void main(String[] args) {
     SpringApplication.run(Novaly.class, args);
+
+    try (Connection connection = dataSource.getConnection()) {
+      Statement stmt = connection.createStatement();
+      stmt.executeUpdate(String.join(
+          "CREATE TABLE IF NOT EXISTS LAN ( ID serial PRIMARY KEY NOT NULL, name varchar(255), email varchar(255) NOT NULL, student_id varchar(20), created_at TIMESTAMPTZ DEFAULT NOW() );"));
+    } catch (Exception e) {
+      System.out.println("toString(): " + e.toString());
+      System.out.println("getMessage(): " + e.getMessage());
+      System.out.println("StackTrace: ");
+      e.printStackTrace();
+    }
   }
 
   @RequestMapping("/")
@@ -43,26 +54,20 @@ public class Novaly {
   @RequestMapping(value = "/lan/db", method = RequestMethod.GET)
   @ResponseBody
   String db() {
-    return dbUrl;
-  }
-
-  @RequestMapping("/db")
-  String db(Map<String, Object> model) {
     try (Connection connection = dataSource.getConnection()) {
       Statement stmt = connection.createStatement();
-      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-      stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-      ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+      ResultSet rs = stmt.executeQuery("SELECT * FROM LAN");
 
-      ArrayList<String> output = new ArrayList<String>();
       while (rs.next()) {
-        output.add("Read from DB: " + rs.getTimestamp("tick"));
+        System.out.println("email: " + rs.getString("email"));
       }
 
-      model.put("records", output);
-      return "db";
+      return "Successful Query!";
     } catch (Exception e) {
-      model.put("message", e.getMessage());
+      System.out.println("toString(): " + e.toString());
+      System.out.println("getMessage(): " + e.getMessage());
+      System.out.println("StackTrace: ");
+      e.printStackTrace();
       return "error";
     }
   }
