@@ -1,10 +1,10 @@
-package com.example.novaly;
+package com.example.mariposa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NovalyTests {
+class MariposaApplicationTests {
 
 	@Test
 	void contextLoads() {
