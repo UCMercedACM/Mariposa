@@ -7,7 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class MariposaApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void datedLANInfoTests() {
+		LANInfo test = new LANInfo(0, "");
+		System.out.println(test.getContent());
 	}
 
 }
