@@ -5,7 +5,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
 @SpringBootTest
-class LANInfoDateTests {
+class LANInfoTests {
+
+	@Test
+	void allData() {
+		LANInfo actual = new LANInfo(0);
+		Assert.hasText(actual.getContent(), "placeholder for all lan party content");
+	}
 
 	@Test
 	void octThird() {
@@ -14,8 +20,9 @@ class LANInfoDateTests {
 	}
 
 	@Test
-	void noDate() {
-		LANInfo actual = new LANInfo(0, "");
-		Assert.hasText(actual.getContent(), "no date provided");
+	void f19() {
+		LANInfo actual = new LANInfo(0, "F", 19);
+		Assert.hasText(actual.getContent(), "F19");
 	}
+
 }

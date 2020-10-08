@@ -23,10 +23,10 @@ public class InfoController {
     
     @GetMapping("/semesterinfo")
     /**
-     * @param sem S or F for Spring or Fall semester
-     * @param yr Last two digits of the year
+     * @param semester S or F for Spring or Fall semester
+     * @param year Last two digits of the year
      */
-    public LANInfo lanInfo(@RequestParam(value = "semester", defaultValue = "") String sem, @RequestParam(value = "year", defaultValue = "") int yr) { // can we filter allowed endpoints?
-        return new LANInfo(counter.incrementAndGet(), sem, yr);
+    public LANInfo lanInfo(@RequestParam(value = "semester", defaultValue = "") String semester, @RequestParam(value = "year", defaultValue = "") int year) {
+        return new LANInfo(counter.incrementAndGet(), semester, year);
     }
 }
