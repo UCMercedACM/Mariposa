@@ -17,6 +17,9 @@ public class InfoController {
     }
 
     @GetMapping("/dateinfo")
+    /**
+     * @param date mm/dd
+     */
     public LANInfo lanInfo(@RequestParam(value = "date", defaultValue = "") String date) {
         return new LANInfo(counter.incrementAndGet(), date);
     }

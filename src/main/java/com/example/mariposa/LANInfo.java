@@ -42,11 +42,16 @@ public class LANInfo { // yes, I know this is still pretty gross
 
     private void getSpecific(String date) {
         // TODO return specific lan party info given date
-        int month, day;
-        int splitsAt = date.indexOf('/');
-        month = stringToInt(date.substring(0, splitsAt));
-        day = stringToInt(date.substring(splitsAt+1));
+        String[] dateArr = date.split("/");
+        int month, day, year;
+        
+        month = stringToInt(dateArr[0]);
+        day = stringToInt(dateArr[1]);
         content = "month: " + month + ", day: " + day;
+        if (dateArr.length == 3) {
+            year = stringToInt(dateArr[2]);
+            content += ", year: " + year;
+        }
     }
 
     private void getSpecific(String semester, int year) {
