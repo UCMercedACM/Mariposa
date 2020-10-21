@@ -20,6 +20,12 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>org.apache.aries.jpa.javax.persistence</groupId>
+			<artifactId>javax.persistence_2.1</artifactId>
+			<version>2.7.2</version>
+		</dependency>
+
+		<dependency>
     		<groupId>com.googlecode.json-simple</groupId>
     		<artifactId>json-simple</artifactId>
     		<version>1.1.1</version>
@@ -57,6 +63,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
